@@ -1,0 +1,111 @@
+.hangmanContainer{
+    width: 600px;
+    height: 600px;
+    background: pink;
+    position: relative;
+}
+
+.base{
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    background: black;
+    width: 180px;
+    height: 10px;
+}
+
+.pole{
+    position: absolute;
+    bottom: 10px;
+    left: 110px;
+    background: black;
+    width: 10px;
+    height: 580px;
+}
+
+.horizontal{
+    position: absolute;
+    top: 10px;
+    left: 110px;
+    background: black;
+    width: 300px;
+    height: 10px;
+}
+
+.triangle{
+    position: absolute;
+    top: -1px;
+    left: 152px;
+    background: black;
+    width: 10px;
+    height: 120px;
+    transform: rotate(45deg);
+}
+
+.rope{
+    position: absolute;
+    top: 10px;
+    right: 180px;
+    background: black;
+    width: 10px;
+    height: 85px;
+}
+
+.head{
+    position: absolute;
+    top: 90px;
+    right: 125px;
+    border: 10px solid black;
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+}
+
+.body{
+    position: absolute;
+    top: 210px;
+    right: 180px;
+    background: black;
+    width: 10px;
+    height: 150px;
+}
+
+.leftArm{
+    position: absolute;
+    top: 220px;
+    right: 215px;
+    background: black;
+    width: 10px;
+    height: 110px;
+    transform: rotate(220deg);
+}
+
+.rightArm{
+    position: absolute;
+    top: 220px;
+    right: 145px;
+    background: black;
+    width: 10px;
+    height: 110px;
+    transform: rotate(140deg);
+}
+
+.leftLeg{
+    position: absolute;
+    top: 350px;
+    right: 205px;
+    background: black;
+    width: 10px;
+    height: 150px;
+    transform: rotate(200deg);
+}
+
+.rightLeg{
+    position: absolute;
+    top: 350px;
+    right: 155px;
+    background: black;
+    width: 10px;
+    height: 150px;
+    transform: rotate(160deg);
+}
