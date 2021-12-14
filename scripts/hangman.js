@@ -1,17 +1,28 @@
-//console.log("bonjour bestie :)");
+function randomIntFromInterval(min, max) { // min and max included 
+    return Math.floor(Math.random() * (max - min + 1) + min)
+}
+let maxNumber = words.length;
+const rndInt = randomIntFromInterval(0, maxNumber);
+//console.log(maxNumber);
+//console.log(rndInt);
 
-let word = "orange";
+let word = words[rndInt];
+//console.log(word);
 
 let allLetters = document.querySelectorAll('.alphabetContainer .letter');
 //console.log(allLetters);
 let guessContainer = document.querySelector('.guessContainer');
 
+let wrongGuessContainer = document.querySelector('.wrongGuessContainer');
+//console.log(wrongGuessContainer);
+
 let guessLetterHTML = '<div class = "guessLetter"></div>';
 for (counter = 0; counter < word.length; counter ++){
-    guessContainer.insertAdjacentHTML('beforeend', guessLetterHTML );
+    guessContainer.insertAdjacentHTML('beforeend', guessLetterHTML);
 }
 
 let guessLetters = document.querySelectorAll('.guessLetter')
+let lifeCounter = 0;
 
 allLetters.forEach(function(letter){
     //console.log(letter);
@@ -21,21 +32,71 @@ allLetters.forEach(function(letter){
             let currentLetter = event.target.innerHTML.toLowerCase();
             currentLetterHTML.classList.add('clicked');
             //console.log(currentLetter);
-            let answers = [...word.matchAll(currentLetter)];
-            console.log(answers);
-            if(answers){
-                answers.forEach(function(answer){
-                    //console.log(answer.index);
-                    for(counter = 0; counter < guessLetters.length; counter ++){
-                        if(counter == answer.index){
-                            guessLetters[answer.index].innerHTML = currentLetter.toUpperCase();
-                        }
-                    }
-                })
-            } else {
-                //show next part of hangman
+            checkCurrentLetter(currentLetter);
+        }
+    })
+})
+
+document.addEventListener('keyup', function(event){
+    //console.log(event);
+    let currentLetter = event.key.toUpperCase();
+    allLetters.forEach(function(letter){
+        let dataLetter = letter.innerHTML;
+        //console.log(dataLetter);
+        if(currentLetter == dataLetter){
+            if(!letter.classList.add('clicked')){
+                currentLetter = currentLetter.toLowerCase();
+                letter.classList.add('clicked');
+                checkCurrentLetter(currentLetter);
             }
         }
     })
 })
 
+function checkCurrentLetter(currentLetter){
+    let answers = [...word.matchAll(currentLetter)];
+    //console.log(answers);
+    if(answers.length){
+        answers.forEach(function(answer){
+            //console.log(answer.index);
+            for(counter = 0; counter < guessLetters.length; counter ++){
+                if(counter == answer.index){
+                    guessLetters[answer.index].innerHTML = currentLetter.toUpperCase();
+                }
+            }
+            checkWin();
+        })
+    } else {
+        let wrongGuessLetterHTML = '<div class = "wrongGuessLetter">' + currentLetter.toUpperCase() + '</div>';
+        wrongGuessContainer.insertAdjacentHTML('beforeend', wrongGuessLetterHTML);
+        lifeCounter ++;
+        //console.log(lifeCounter);
+        let currentLifeSelector = '.life' + lifeCounter;
+        let currentLifeElement = document.querySelector(currentLifeSelector);
+        currentLifeElement.classList.add('active');
+        if(lifeCounter == 11){
+            endGame();
+        }
+    }
+}
+
+function checkWin(){
+    blnGameWon = true;
+    for(counter = 0; counter < guessLetters.length; counter ++){
+        let innerHTML = guessLetters[counter].innerHTML;
+        //console.log(innerHTML);
+        if(!innerHTML){
+            blnGameWon = false;
+        }
+    }
+    if(blnGameWon){
+        endGame();
+    }
+}
+
+function endGame(){
+    allLetters.forEach(function(letter){
+        //console.log(letter);
+        letter.classList.add('clicked');
+    });
+}
