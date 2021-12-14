@@ -1,7 +1,14 @@
+.hangmanAndWrongGuessContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
 .hangmanContainer{
     width: 600px;
     height: 500px;
-    background: lightblue;
+    background: rgb(210,253,255);
     position: relative;
     margin: 0 auto;
 }
@@ -111,7 +118,9 @@
     transform: rotate(160deg);
 }
 
-.alphabetContainer, .guessContainer{
+.alphabetContainer,
+.guessContainer,
+.wrongGuessContainer{
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -119,11 +128,18 @@
     align-items: center;
 }
 
+.wrongGuessContainer{
+    height: 150px;
+    width: 300px;
+    background: rgb(255,224,240);
+    position: relative;
+    margin: 0 auto;
+}
+
 .letter{
     padding: 15px;
-    border: 1px solid lightpink;
+    border: 1px solid black;
     background: rgb(210,253,255);
-    background: linear-gradient(360deg, rgba(210,253,255,1) 0%, rgba(255,221,227,1) 100%);
     margin: 8px;
     border-radius: 15px;
     cursor: pointer;
@@ -133,9 +149,16 @@
     padding: 15px;
     border: 1px solid grey;
     background: #e6e6e6;
-    margin: 10px;
+    margin: 8px;
     border-radius: 15px;
     cursor: auto;
+}
+
+.wrongGuessLetter{
+    padding: 10px;
+    font-size: 30px;
+    margin: 10px;
+    min-height: 36px;
 }
 
 .guessLetter{
@@ -144,4 +167,32 @@
     border-bottom: 1px solid black;
     margin: 10px;
     min-height: 36px;
+}
+
+.life1,
+.life2,
+.life3,
+.life4,
+.life5,
+.life6,
+.life7,
+.life8,
+.life9,
+.life10,
+.life11{
+    display: none;
+}
+
+.life1.active,
+.life2.active,
+.life3.active,
+.life4.active,
+.life5.active,
+.life6.active,
+.life7.active,
+.life8.active,
+.life9.active,
+.life10.active,
+.life11.active{
+    display: block;
 }
